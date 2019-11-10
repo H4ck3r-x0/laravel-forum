@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Forum Threads</div>
+                    <div class="card-header bg-white">Forum Threads</div>
 
                     <div class="card-body">
                         @foreach($threads as $thread)

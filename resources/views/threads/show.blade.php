@@ -3,12 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
+            <div class="col-md-8 ">
+                <div class="card shadow-sm bg-white rounded">
+                    <div class="card-header bg-white">
                         <a href="#">{{ $thread->creator->name}}</a>
-                        posted:
+                       <span class="text-muted">
+                            posted:
                         {{ $thread->title }}
+                       </span>
                     </div>
                     <div class="card-body">
                         {{ $thread->body }}
@@ -31,14 +33,14 @@
                         <button type="submit" class="btn btn-primary">Send</button>
                     </form>
                 @else
-                    <p class="text-center">
+                    <p class="text-center text-muted">
                         Please <a href="{{ route('login') }}">sign in</a> to participate in the forum.
                     </p>
                 @endif
             </div>
 
             <div class="col-md-4">
-                <div class="card">
+                <div class="card shadow-sm  mb-5 bg-white rounded">
                     <div class="card-body">
                         <span class="text-muted">
                             This thread was publish {{ $thread->created_at->diffForHumans() }} by
