@@ -8,7 +8,7 @@
             <div>
                 <form method="POST" action="/replies/{{ $reply->id }}/favorites">
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-primary {{ $reply->isFavorited() ? 'disabled' : '' }}">
+                    <button type="submit" class="btn btn-sm btn-primary" {{ $reply->isFavorited() ? 'disabled' : '' }}>
                         {{ $reply->favorites()->count() }} {{ Str::plural('Like', $reply->favorites()->count()) }}
                     </button>
                 </form>
