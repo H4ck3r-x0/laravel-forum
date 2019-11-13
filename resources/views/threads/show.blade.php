@@ -6,11 +6,22 @@
             <div class="col-md-8 ">
                 <div class="card shadow-sm bg-white rounded">
                     <div class="card-header bg-white">
-                        <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name}}</a>
-                       <span class="text-muted">
-                            posted:
-                        {{ $thread->title }}
-                       </span>
+                        <div class="level">
+                            <div class="flex-fill">
+                                <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name}}</a>
+                                <span class="text-muted">
+                                    posted:
+                                    {{ $thread->title }}
+                                </span>
+                            </div>
+                            @can ('update', $thread)
+                                <form method="POST" action="{{ $thread->path() }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            @endcan
+                        </div>
                     </div>
                     <div class="card-body">
                         {{ $thread->body }}
