@@ -8,18 +8,25 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+window.events = new Vue();
+
+window.flash = function (message) {
+    window.events.$emit('flash', message);
+};
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./components/Flash.vue -> <example-component></example-component>
  */
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('flash', require('./components/Flash.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
