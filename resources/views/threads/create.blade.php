@@ -11,10 +11,12 @@
                             @csrf
                             <div class="form-group">
                                 <label for="channel">Choose a Channel</label>
-                                <select name="channel_id" class="form-control @error('channel_id') is-invalid @enderror" required>
+                                <select name="channel_id" class="form-control @error('channel_id') is-invalid @enderror"
+                                        required>
                                     <option value="">Choose One</option>
                                     @foreach ($channels as $channel)
-                                        <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : '' }}>
+                                        <option
+                                            value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : '' }}>
                                             {{ $channel->name }}
                                         </option>
                                     @endforeach

@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                @empty
+            @empty
                 <p class="text-info">There are no relevant results at this time.</p>
             @endforelse
 

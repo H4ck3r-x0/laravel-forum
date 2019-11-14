@@ -17,14 +17,14 @@
         },
 
         computed: {
-          //btn btn-sm btn-primary
-          classes() {
-              return ['btn btn-sm', this.isFavorited ? 'btn-primary' : 'btn-default']
-          },
+            //btn btn-sm btn-primary
+            classes() {
+                return ['btn btn-sm', this.isFavorited ? 'btn-primary' : 'btn-default']
+            },
 
-          endpoint() {
-            return  '/replies/' + this.reply.id + '/favorites';
-          }
+            endpoint() {
+                return '/replies/' + this.reply.id + '/favorites';
+            }
         },
 
         methods: {

@@ -20,9 +20,9 @@
                         @include("profiles.activities.{$record->type}", ['activity' => $record])
                     @endif
                 @endforeach
-                    @empty
+            @empty
                 <hr>
-                    <h5 class="text-muted mt-3">There is no activities for this user yet.</h5>
+                <h5 class="text-muted mt-3">There is no activities for this user yet.</h5>
             @endforelse
         </div>
     </div>

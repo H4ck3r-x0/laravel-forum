@@ -31,7 +31,7 @@
             <div
                 v-else v-text="body"
                 @can('update', $reply)
-                    @dblclick="editing = true"
+                @dblclick="editing = true"
                 @endcan>
             </div>
         </div>
