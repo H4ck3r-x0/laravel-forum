@@ -12,7 +12,7 @@
     @endslot
 
     @slot('body')
-        {{ $activity->subject->thread->body }}
+        {{ $activity->subject->body }}
     @endslot
 
 @endcomponent
