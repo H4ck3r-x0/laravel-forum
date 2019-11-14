@@ -44,12 +44,9 @@
                 <button type="button" class="btn btn-sm btn-secondary mr-1" @click="editing = true">
                     Edit
                 </button>
-
-                <form method="POST" action="/replies/{{ $reply->id }}">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
+                <button type="submit" class="btn btn-sm btn-danger" @click="destroy">
+                    Delete
+                </button>
             </div>
         @endcan
     </div>
