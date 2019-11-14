@@ -33,11 +33,7 @@ trait RecordsActivity
             'user_id' => auth()->id(),
             'type' => $this->getActivityType($event),
         ]);
-//        Activity::create([
-//
-//            'subject_id' => $this->id,
-//            'subject_type' => get_class($this)
-//        ]);
+
     }
 
     public function activity()
