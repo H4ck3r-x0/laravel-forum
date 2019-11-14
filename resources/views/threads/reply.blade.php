@@ -6,9 +6,11 @@
                     <a href="/profiles/{{ $reply->owner->name }}">{{ $reply->owner->name }}</a>
                     <span class="text-muted">said {{ $reply->created_at->diffForHumans() }}</span>
                 </h6>
-                <div>
-                    <favorite :reply="{{ $reply }}"></favorite>
-                </div>
+                @if(auth()->check())
+                    <div>
+                        <favorite :reply="{{ $reply }}"></favorite>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card-body">

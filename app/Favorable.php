@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 trait Favorable
 {
 
+    protected static function bootFavorable()
+    {
+        static::deleting(function($model) {
+            $model->favorites->each->delete();
+        });
+    }
+
     /**
      * @return bool
      */
@@ -55,6 +62,6 @@ trait Favorable
     {
         $attributes = ['user_id' => auth()->id()];
 
-        $this->favorites()->where($attributes)->delete();
+        $this->favorites()->where($attributes)->get()->each->delete();
     }
 }

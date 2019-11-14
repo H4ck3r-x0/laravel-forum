@@ -11,7 +11,7 @@
                     </small>
                 </h1>
             </div>
-            @foreach($activities as $date => $activity)
+            @forelse($activities as $date => $activity)
                 <hr>
 
                 <h3 class="page-header">{{ $date }}</h3>
@@ -20,7 +20,10 @@
                         @include("profiles.activities.{$record->type}", ['activity' => $record])
                     @endif
                 @endforeach
-            @endforeach
+                    @empty
+                <hr>
+                    <h5 class="text-muted mt-3">There is no activities for this user yet.</h5>
+            @endforelse
         </div>
     </div>
 @endsection
