@@ -22,6 +22,7 @@
     <style>
         body { padding-bottom: 100px; }
         .level { display: flex; align-items: center;}
+        [v-cloak] { display: none; }
     </style>
 </head>
 <body>
