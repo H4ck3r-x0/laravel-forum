@@ -31,13 +31,9 @@
 
                     <replies
                         class="mt-3"
-                        :data="{{ $thread->replies }}"
                         @added="repliesCount++"
                         @removed="repliesCount--">
                     </replies>
-
-                    {{--                {{ $replies->links() }}--}}
-
 
                 </div>
 
