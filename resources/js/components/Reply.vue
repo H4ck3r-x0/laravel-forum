@@ -4,7 +4,7 @@
             <div class="level">
                 <h6 class="flex-fill">
                     <a :href="'/profiles/' + data.owner.name" v-text="data.owner.name"></a>
-                    <span class="text-muted">said {{ data.created_at }}</span>
+                    <span class="text-muted" v-text="ago"></span>
                 </h6>
 
                 <div v-if="signdIn">
@@ -47,6 +47,7 @@
 </template>
 <script>
     import Favorite from "./Favorite";
+    import moment from 'moment';
 
     export default {
         props: ['data'],
@@ -62,6 +63,10 @@
         },
 
         computed: {
+            ago() {
+                return moment(this.data.created_at).fromNow();
+            },
+
             signdIn() {
                 return window.App.signdIn;
             },
