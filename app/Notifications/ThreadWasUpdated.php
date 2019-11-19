@@ -8,8 +8,8 @@ use Illuminate\Notifications\Notification;
 class ThreadWasUpdated extends Notification
 {
     use Queueable;
-    protected $thread;
-    protected $reply;
+
+    protected $thread, $reply;
 
     /**
      * Create a new notification instance.
