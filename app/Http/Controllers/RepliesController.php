@@ -21,32 +21,41 @@ class RepliesController extends Controller
     /**
      * @param $channelId
      * @param Thread $thread
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
-    public function store($channelId, Thread $thread, Request $request)
+    public function store($channelId, Thread $thread)
     {
-        $request->validate([
-            'body' => 'required'
-        ]);
+        try {
+            $this->validate(request(), ['body' => 'required|spamfree']);
 
-        $reply = $thread->addReply([
-            'user_id' => auth()->id(),
-            'body' => request('body')
-        ]);
-
-        if (request()->expectsJson()) {
-            return $reply->load('owner');
+            $reply = $thread->addReply([
+                'user_id' => auth()->id(),
+                'body' => request('body')
+            ]);
+        } catch (\Exception $e) {
+            return response('Sorry, your reply could not be saved at this time.', 422);
         }
 
-        return back()->with('flash', 'Your reply has been left!');
+        return $reply->load('owner');
     }
 
-    public function update(Reply $reply)
+    /**
+     * @param Reply $reply
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Reply $reply, Request $request)
     {
         $this->authorize('update', $reply);
 
-        $reply->update(['body' => request('body')]);
+        try {
+            $this->validate(request(), ['body' => 'required|spamfree']);
+
+            $reply->update(['body' => request('body')]);
+        } catch (\Exception $e) {
+            return response('Sorry, your reply could not be updated at this time.', 422);
+        }
     }
 
     /**

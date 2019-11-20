@@ -33,16 +33,13 @@ class ParticipateInForumTest extends TestCase
     }
 
     /** @test */
-    public function a_reply_requires_a_body()
+    function a_reply_requires_a_body()
     {
         $this->withExceptionHandling()->signIn();
-
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
-
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
-
+            ->assertStatus(422);
     }
 
     /** @test */
@@ -103,6 +100,20 @@ class ParticipateInForumTest extends TestCase
         $this->patch("/replies/{$reply->id}", ['body' => 'updated']);
 
         $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => 'updated']);
+    }
 
+    /** @test */
+    public function replies_that_contains_spam_may_not_be_created()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread');
+
+        $reply = create('App\Reply', [
+            'body' => 'Yahoo Customer Support'
+        ]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
     }
 }

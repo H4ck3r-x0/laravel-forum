@@ -11,10 +11,17 @@
                       v-model="body"></textarea>
             </div>
             <button
+                v-if="body !== ''"
                 type="submit"
                 class="btn btn-primary"
                 @click="addReply">Send
-
+            </button>
+            <button
+                v-else
+                disabled
+                type="submit"
+                class="btn btn-primary"
+                @click="addReply">Send
             </button>
         </div>
 
@@ -43,13 +50,20 @@
 
         methods: {
             addReply() {
-                axios.post(this.endpoint, {body: this.body})
+                if (this.body === '') {
+                    flash('Reply body is required', 'danger');
+                    return false;
+                }
+                axios.post(this.endpoint, { body: this.body })
                     .then(response =>  {
                        this.body = '';
 
                        flash('Your Reply has been published.');
 
                         this.$emit('created', response.data);
+                    })
+                    .catch(onerror => {
+                        flash(onerror.response.data, 'danger');
                     });
             }
         }
