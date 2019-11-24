@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Notifications\YouWereMentioned;
-use App\Providers\ThreadReceivedNewReply;
 use App\User;
 
 class NotifyMentionedUsers
@@ -16,11 +15,8 @@ class NotifyMentionedUsers
      */
     public function handle(ThreadReceivedNewReply $event)
     {
-        collect($event->reply->mentionedUsers())
-            ->map(function ($name) {
-                return User::whereName($name)->first();
-            })
-            ->filter()
+        User::WhereIn('name', $event->reply->mentionedUsers())
+            ->get()
             ->each(function ($user) use ($event) {
                 $user->notify(new YouWereMentioned($event->reply));
             });

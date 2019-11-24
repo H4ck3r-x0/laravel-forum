@@ -15,20 +15,22 @@
         </div>
         <div class="card-body">
             <div v-if="editing">
-                <div class="form-group mb-0">
-                    <textarea name="" class="form-control" v-model="body"></textarea>
+                <form @submit="update">
+                    <div class="form-group mb-0">
+                        <textarea name="" class="form-control" v-model="body" required></textarea>
 
-                    <div class="d-flex mt-2">
-                        <button type="button" class="btn btn-sm btn-primary mr-1" @click="update">
-                            Update
-                        </button>
-                        <button type="button" class="btn btn-sm btn-link" @click="editing = false">
-                            Cancel
-                        </button>
+                        <div class="d-flex mt-2">
+                            <button  class="btn btn-sm btn-primary mr-1">
+                                Update
+                            </button>
+                            <button type="button" class="btn btn-sm btn-link" @click="editing = false">
+                                Cancel
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <div v-else v-text="body"
+            <div v-else v-html="body"
                  @dblclick="canUpdate ? editing = true : editing = false">
             </div>
         </div>
