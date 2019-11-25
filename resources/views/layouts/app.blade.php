@@ -31,6 +31,7 @@
         .level { display: flex; align-items: center;}
         [v-cloak] { display: none; }
     </style>
+    @yield('head')
 </head>
 <body>
 <div id="app">
