@@ -13,6 +13,12 @@
                         <div class="card-header bg-white">
                             <div class="level">
                                 <div class="flex-fill">
+                                    <img
+                                        class="mr-1 rounded-circle"
+                                        width="32"
+                                        height="32"
+                                        src="{{ asset($thread->creator->avatar()) }}"
+                                        alt="{{ $thread->creator->name }}">
                                     <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name}}</a>
                                     <span class="text-muted">
                                     posted:
