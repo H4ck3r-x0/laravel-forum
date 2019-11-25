@@ -9,7 +9,7 @@
                         class="mr-1 rounded-circle"
                         width="100"
                         height="100"
-                        src="{{ asset($profileUser->avatar_path) }}"
+                        src="{{ asset($profileUser->avatar()) }}"
                         alt="{{ $profileUser->name }}">
                     {{ $profileUser->name }}
                 </h2>
