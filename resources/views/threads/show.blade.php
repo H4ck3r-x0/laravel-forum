@@ -17,7 +17,7 @@
                                         class="mr-1 rounded-circle"
                                         width="32"
                                         height="32"
-                                        src="{{ asset($thread->creator->avatar()) }}"
+                                        src="{{ asset($thread->creator->avatar_path) }}"
                                         alt="{{ $thread->creator->name }}">
                                     <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name}}</a>
                                     <span class="text-muted">

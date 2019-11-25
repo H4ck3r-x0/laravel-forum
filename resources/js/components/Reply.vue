@@ -3,6 +3,12 @@
         <div class="card-header bg-white">
             <div class="level">
                 <h6 class="flex-fill">
+                    <img
+                        class="mr-1 rounded-circle"
+                        width="32"
+                        height="32"
+                        :src="data.owner.avatar_path"
+                        :alt="data.owner.name">
                     <a :href="'/profiles/' + data.owner.name" v-text="data.owner.name"></a>
                     <span class="text-muted" v-text="ago"></span>
                 </h6>
