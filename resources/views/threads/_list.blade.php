@@ -1,5 +1,4 @@
 @forelse($threads as $thread)
-    <div class="col-md-12 mb-3">
         <div class="card">
             <div class="card-header bg-white">
                 <div class="level">
@@ -34,7 +33,6 @@
                 </div>
             </div>
         </div>
-    </div>
 @empty
     <p class="text-info">There are no relevant results at this time.</p>
 @endforelse
