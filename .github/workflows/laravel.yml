@@ -6,7 +6,7 @@ jobs:
   laravel-tests:
     runs-on: ubuntu-latest
     steps:
-      services:
+      - services:
           redis:
             image: redis
             ports:
