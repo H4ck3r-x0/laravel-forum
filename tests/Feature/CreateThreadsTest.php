@@ -23,7 +23,7 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_can_create_new_forum_threads()
+    public function a_user_can_create_new_forum_threads()
     {
         $this->signIn();
 
@@ -37,9 +37,14 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_users_must_confirm_their_email_address_before_creating_a_thread()
+    public function new_users_must_confirm_their_email_address_before_creating_a_thread()
     {
-        $this->publishThread()
+        $user = factory('App\User')->states('unconfirmed')->create();
+        $this->signIn($user);
+
+        $thread = make('App\Thread');
+
+        return $this->post('/threads', $thread->toArray())
             ->assertRedirect('/threads')
             ->assertSessionHas('flash');
     }
