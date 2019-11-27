@@ -26,7 +26,7 @@
                         <textarea name="" class="form-control" v-model="body" required></textarea>
 
                         <div class="d-flex mt-2">
-                            <button  class="btn btn-sm btn-primary mr-1">
+                            <button type="submit" class="btn btn-sm btn-primary mr-1">
                                 Update
                             </button>
                             <button type="button" class="btn btn-sm btn-link" @click="editing = false">

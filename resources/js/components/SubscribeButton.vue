@@ -10,7 +10,7 @@
 
         computed: {
           clasess() {
-              return ['btn', this.active ? 'btn-primary' : 'btn-default'];
+              return ['btn btn-sm mb-1', this.active ? 'btn-primary' : 'btn-secondary'];
           }
         },
 

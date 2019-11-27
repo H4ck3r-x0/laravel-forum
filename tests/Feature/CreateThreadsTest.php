@@ -128,7 +128,6 @@ class CreateThreadsTest extends TestCase
         $this->assertEquals(0, Activity::count());
     }
 
-
     public function publishThread($overrides = [])
     {
         $this->withExceptionHandling()->signIn();
