@@ -42,7 +42,7 @@ class ReplyTest extends TestCase
 
 
     /** @test */
-    function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags()
+    public function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags()
     {
         $reply = new Reply([
             'body' => 'Hello @Jane-Doe.'
@@ -51,5 +51,16 @@ class ReplyTest extends TestCase
             'Hello <a href="/profiles/Jane-Doe">@Jane-Doe</a>.',
             $reply->body
         );
+    }
+
+    /** @test */
+    public function it_knows_if_it_is_the_best_reply()
+    {
+        $reply = create('App\Reply');
+        $this->assertFalse($reply->isBest());
+
+        $reply->thread->update(['best_reply_id' => $reply->id]);
+        $this->assertTrue($reply->fresh()->isBest());
+
     }
 }

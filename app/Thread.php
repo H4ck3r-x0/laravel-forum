@@ -96,6 +96,11 @@ class Thread extends Model
         return $this->hasMany(ThreadSubscription::class);
     }
 
+    public function markBestReply(Reply $reply)
+    {
+        $this->update(['best_reply_id' => $reply->id]);
+    }
+
     public function getIsSubscribedToAttribute()
     {
         return $this->subscriptions()
