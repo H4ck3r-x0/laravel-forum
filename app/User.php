@@ -41,6 +41,16 @@ class User extends Authenticatable
         'confirmed' => 'boolean',
     ];
 
+    /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return in_array($this->name, ['Mohammed']);
+    }
+
     public function getRouteKeyName()
     {
         return 'name';
