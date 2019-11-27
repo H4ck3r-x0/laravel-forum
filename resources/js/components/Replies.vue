@@ -6,7 +6,11 @@
 
         <paginator :dataSet="dataSet" @updated="fetch"></paginator>
 
-        <new-reply :endpoint="endpoint" @created="add"></new-reply>
+        <div v-if="$parent.locked">
+            <p class="alert alert-info">This Thread has been locked, no more replies are allowed.</p>
+        </div>
+
+        <new-reply :endpoint="endpoint" @created="add" v-else></new-reply>
     </div>
 </template>
 

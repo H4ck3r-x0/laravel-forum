@@ -16,6 +16,10 @@ class Thread extends Model
 
     protected $appends = ['isSubscribedTo'];
 
+    protected $casts = [
+      'locked' => 'boolean'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -94,11 +98,6 @@ class Thread extends Model
     public function subscriptions()
     {
         return $this->hasMany(ThreadSubscription::class);
-    }
-
-    public function lock()
-    {
-        return $this->update(['locked' => true]);
     }
 
     public function markBestReply(Reply $reply)

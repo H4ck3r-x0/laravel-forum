@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <thread-view :initial-replies-count="{{ $thread->replies_count }}" inline-template>
+    <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ">
@@ -57,7 +57,12 @@
                                 {{ Str::plural('comment', $thread->replies_count) }}
                             </span>
                         </div>
-                        <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                        <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signdIn"></subscribe-button>
+                        <button class="btn btn-sm btn-danger"
+                                v-text="locked ? 'Unlock' : 'Lock'"
+                                v-if="authorize('isAdmin')"
+                                @click="toggleLock">
+                        </button>
                     </div>
                 </div>
             </div>
