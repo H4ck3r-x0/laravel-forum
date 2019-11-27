@@ -1,20 +1,20 @@
 <template>
     <div :id="'reply-' + this.id " class="card mt-4 mb-4 shadow-sm bg-white rounded">
-        <div class="card-header bg-white">
+        <div class="card-header" :class="isBest ? 'bg-info' : 'bg-white'">
             <div class="level">
                 <h6 class="flex-fill">
                     <img
                         class="mr-1 rounded-circle"
                         width="32"
                         height="32"
-                        :src="data.owner.avatar_path"
-                        :alt="data.owner.name">
-                    <a :href="'/profiles/' + data.owner.name" v-text="data.owner.name"></a>
+                        :src="reply.owner.avatar_path"
+                        :alt="reply.owner.name">
+                    <a :href="'/profiles/' + reply.owner.name" v-text="reply.owner.name"></a>
                     <span class="text-muted" v-text="ago"></span>
                 </h6>
 
                 <div v-if="signdIn">
-                    <favorite :reply="data"></favorite>
+                    <favorite :reply="reply"></favorite>
                 </div>
 
             </div>
@@ -42,12 +42,18 @@
         </div>
 
 
-        <div class="card-footer d-flex" v-if="canUpdate">
-            <button type="button" class="btn btn-sm btn-secondary mr-1" @click="editing = true">
-                Edit
-            </button>
-            <button type="submit" class="btn btn-sm btn-danger" @click="destroy">
-                Delete
+        <div class="card-footer d-flex" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
+            <div v-if="authorize('owns', reply)">
+                <button class="btn btn-sm btn-secondary mr-1" @click="editing = true">
+                    Edit
+                </button>
+                <button  class="btn btn-sm btn-danger" @click="destroy">
+                    Delete
+                </button>
+            </div>
+            <button  class="btn btn-sm btn-info" style="margin-left: auto" @click="markBestReply"
+                     v-if="authorize('owns', reply.thread)">
+                Best Reply?
             </button>
         </div>
     </div>
@@ -58,35 +64,33 @@
     import moment from 'moment';
 
     export default {
-        props: ['data'],
+        props: ['reply'],
 
         components: {Favorite},
 
         data() {
             return {
                 editing: false,
-                id: this.data.id,
-                body: this.data.body
+                id: this.reply.id,
+                body: this.reply.body,
+                isBest: this.reply.isBest,
             };
         },
 
         computed: {
             ago() {
-                return moment(this.data.created_at).fromNow();
-            },
-
-            signdIn() {
-                return window.App.signdIn;
-            },
-
-            canUpdate() {
-                return this.authorize(user => this.data.user_id == user.id);
+                return moment(this.reply.created_at).fromNow();
             }
+        },
+        created () {
+            window.events.$on('best-reply-selected', id => {
+                this.isBest = (id === this.id);
+            });
         },
 
         methods: {
             update() {
-                axios.patch('/replies/' + this.data.id, {
+                axios.patch('/replies/' + this.reply.id, {
                     body: this.body
                 }) .catch(error => {
                    flash(error.response.data, 'danger');
@@ -98,10 +102,15 @@
             },
 
             destroy() {
-                axios.delete('/replies/' + this.data.id);
+                axios.delete('/replies/' + this.reply.id);
 
-                this.$emit('deleted', this.data.id);
+                this.$emit('deleted', this.reply.id);
 
+            },
+
+            markBestReply() {
+                axios.post('/replies/' + this.reply.id + '/best');
+                window.events.$emit('best-reply-selected', this.id);
             }
         }
     }

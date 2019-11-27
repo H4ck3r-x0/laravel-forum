@@ -45,11 +45,6 @@
             }
         },
 
-        computed: {
-          signdIn() {
-              return window.App.signdIn;
-          }
-        },
         mounted() {
             $('#body').atwho({
                 at: "@",
