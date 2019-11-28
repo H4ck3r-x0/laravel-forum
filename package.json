@@ -25,8 +25,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "algoliasearch": "^3.35.1",
         "at.js": "^1.5.4",
         "jquery.caret": "^0.3.1",
-        "moment": "^2.24.0"
+        "moment": "^2.24.0",
+        "vue-instantsearch": "^2.6.0"
     }
 }

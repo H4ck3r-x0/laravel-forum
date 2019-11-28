@@ -5,10 +5,11 @@ namespace App;
 use App\Providers\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, Searchable;
 
     protected $guarded = [];
 
@@ -152,6 +153,11 @@ class Thread extends Model
             }, $max);
         }
         return "{$slug}-2";
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->toArray() + ['path' => $this->path()];
     }
 
 }
