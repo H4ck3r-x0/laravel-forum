@@ -1,6 +1,6 @@
 <template>
     <div>
-        <VueTrix inputId="trix" :inputName="name" v-model="editorContent" placeholder="Enter content"></VueTrix>
+        <VueTrix inputId="body" :inputName="name" v-model="editorContent" placeholder="Enter content"></VueTrix>
     </div>
 </template>
 
@@ -14,6 +14,7 @@
                 editorContent: this.value,
             }
         },
+
         methods: {
             updateBodyContent(value) {
                 this.$emit("body-changed", value);
