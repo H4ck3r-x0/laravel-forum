@@ -23,13 +23,13 @@
             <div v-if="editing">
                 <form @submit="update">
                     <div class="form-group mb-0">
-                        <textarea name="" class="form-control" v-model="body" required></textarea>
+                        <textarea name="body" class="form-control" v-model="body" required></textarea>
 
                         <div class="d-flex mt-2">
                             <button type="submit" class="btn btn-sm btn-primary mr-1">
                                 Update
                             </button>
-                            <button type="button" class="btn btn-sm btn-link" @click="editing = false">
+                            <button type="button" class="btn btn-sm btn-link" @click="reset">
                                 Cancel
                             </button>
                         </div>
@@ -37,7 +37,7 @@
                 </form>
             </div>
             <div v-else v-html="body"
-                 @dblclick="canUpdate ? editing = true : editing = false">
+                 @dblclick="authorize('owns', reply) ? editing = true : editing = false">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                     Delete
                 </button>
             </div>
-            <button  class="btn btn-sm btn-info" style="margin-left: auto" @click="markBestReply"
+            <button v-show="! isBest"  class="btn btn-sm btn-info" style="margin-left: auto" @click="markBestReply"
                      v-if="authorize('owns', reply.thread)">
                 Best Reply?
             </button>
@@ -111,6 +111,11 @@
             markBestReply() {
                 axios.post('/replies/' + this.reply.id + '/best');
                 window.events.$emit('best-reply-selected', this.id);
+            },
+
+            reset() {
+                this.body = this.reply.body;
+                this.editing = false;
             }
         }
     }

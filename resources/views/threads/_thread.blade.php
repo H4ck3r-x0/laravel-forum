@@ -9,7 +9,6 @@
     </div>
     <div class="card-body">
         <trix-vue v-model="form.body" :value="form.body" @body-changed="updateBodyContent"></trix-vue>
-{{--        <textarea name="body" class="form-control" cols="30" rows="10" v-model="form.body"></textarea>--}}
     </div>
     <div class="card-footer">
         <div class="d-flex">
