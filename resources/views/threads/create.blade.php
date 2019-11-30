@@ -44,9 +44,10 @@
 
                             <div class="form-group">
                                 <label for="body">Thread Body</label>
-                                <textarea name="body" id="body" rows="5"
-                                          required
-                                          class="form-control @error('body') is-invalid @enderror">{{ old('body') }}</textarea>
+                                <trix-vue name="body"></trix-vue>
+{{--                                <textarea name="body" id="body" rows="5"--}}
+{{--                                          required--}}
+{{--                                          class="form-control @error('body') is-invalid @enderror">{{ old('body') }}</textarea>--}}
 
                                 @error('body')
                                 <span class="invalid-feedback" role="alert">

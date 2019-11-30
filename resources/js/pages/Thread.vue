@@ -1,11 +1,11 @@
 <script>
     import Replies from "../components/Replies";
     import SubscribeButton from "../components/SubscribeButton";
+    import Trix from "../components/Trix";
     export default {
-
         props: ['thread'],
 
-        components: { Replies, SubscribeButton },
+        components: { Replies, SubscribeButton, Trix },
 
         data() {
             return {
@@ -22,6 +22,9 @@
         },
 
         methods: {
+            updateBodyContent(content) {
+                this.form.body = content;
+            },
             update() {
                 let uri = `/threads/${this.thread.channel}/${this.thread.slug}`;
                 axios.patch(uri, this.form).then(() => {

@@ -8,7 +8,8 @@
         </div>
     </div>
     <div class="card-body">
-        <textarea name="body" class="form-control" cols="30" rows="10" v-model="form.body"></textarea>
+        <trix-vue v-model="form.body" :value="form.body" @body-changed="updateBodyContent"></trix-vue>
+{{--        <textarea name="body" class="form-control" cols="30" rows="10" v-model="form.body"></textarea>--}}
     </div>
     <div class="card-footer">
         <div class="d-flex">
@@ -44,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="card-body" v-text="body"></div>
+    <div class="card-body" v-html="body"></div>
     <div class="card-footer" v-if="authorize('owns', thread)">
         <div class="d-flex">
             <button type="button" class="btn btn-sm btn-primary" @click="editing = true">
