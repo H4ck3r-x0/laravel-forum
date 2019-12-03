@@ -1,6 +1,6 @@
 <template>
     <div>
-        <VueTrix inputId="body" :inputName="name" v-model="editorContent" placeholder="Enter content"></VueTrix>
+        <VueTrix inputId="body" :inputName="name" v-model="editorContent" :placeholder="placeholder"></VueTrix>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     import VueTrix from "vue-trix";
 
     export default {
-        props: ['name', 'value'],
+        props: ['name', 'value', 'placeholder'],
         data() {
             return {
                 editorContent: this.value,

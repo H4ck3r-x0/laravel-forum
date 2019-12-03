@@ -2,7 +2,7 @@
     <div>
         <div v-if="signdIn">
             <div class="form-group">
-                <VueTrix inputName="body" inputId="body" v-model="body"></VueTrix>
+                <VueTrix inputName="body" inputId="body" v-model="body" :placeholder="placeholder" ></VueTrix>
             </div>
             <button
                 v-if="body !== ''"
@@ -36,6 +36,7 @@
         data() {
             return {
                 body: '',
+                placeholder: 'You have something to say?'
             }
         },
 

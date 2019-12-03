@@ -44,11 +44,7 @@
 
                             <div class="form-group">
                                 <label for="body">Thread Body</label>
-                                <trix-vue name="body"></trix-vue>
-{{--                                <textarea name="body" id="body" rows="5"--}}
-{{--                                          required--}}
-{{--                                          class="form-control @error('body') is-invalid @enderror">{{ old('body') }}</textarea>--}}
-
+                                <trix-vue name="body" placeholder="Enter Your content here ..."></trix-vue>
                                 @error('body')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
