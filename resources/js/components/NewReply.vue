@@ -31,7 +31,7 @@
 
     export default {
         props: ['endpoint'],
-        components: {Trix},
+        components: { Trix },
 
         data() {
             return {

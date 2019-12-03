@@ -23,7 +23,7 @@
             <div v-if="editing">
                 <form @submit="update">
                     <div class="form-group mb-0">
-                        <textarea name="body" class="form-control" v-model="body" required></textarea>
+                        <VueTrix inputName="body" inputId="body" v-model="body"></VueTrix>
 
                         <div class="d-flex mt-2">
                             <button type="submit" class="btn btn-sm btn-primary mr-1">

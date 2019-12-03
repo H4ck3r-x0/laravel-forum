@@ -160,4 +160,9 @@ class Thread extends Model
         return $this->toArray() + ['path' => $this->path()];
     }
 
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+
 }
