@@ -48,11 +48,11 @@
         mounted() {
             let tribute = new Tribute({
                 trigger: '@',
+                lookup: 'name',
+                fillAttr: 'username',
                 values: (text, cb) => {
                     this.getUsers(text, users => cb(users));
-                },
-                lookup: 'name',
-                fillAttr: 'name'
+                }
             });
             tribute.attach(document.getElementsByClassName("trix-content"));
         },
