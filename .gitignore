@@ -4,9 +4,9 @@
 /public/js/app.js
 /storage/*.key
 /vendor
-public/.DS_Store
-public/images/.DS_Store
-public/images/avatars/
+/public/.DS_Store
+/public/images/.DS_Store
+/public/images/avatars/
 storage/.DS_Store
 .idea
 .env
