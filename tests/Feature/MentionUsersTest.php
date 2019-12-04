@@ -12,15 +12,15 @@ class MentionUsersTest extends TestCase
     /** @test */
     public function mentioned_users_in_a_reply_are_notified()
     {
-        $mohammed = create('App\User', ['name' => 'Mohammed']);
+        $mohammed = create('App\User', ['username' => 'mohammed']);
         $this->signIn($mohammed);
 
-        $saleh = create('App\User', ['name' => 'Saleh']);
+        $saleh = create('App\User', ['username' => 'saleh']);
 
         $thread = create('App\Thread');
 
         $reply = make('App\Reply', [
-           'body' => '@Saleh I need your help.'
+           'body' => '@saleh I need your help.'
         ]);
         $this->json('post',$thread->path() . '/replies', $reply->toArray());
 

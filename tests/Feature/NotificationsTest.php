@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
 
@@ -48,7 +47,7 @@ class NotificationsTest extends TestCase
 
         $user = auth()->user();
 
-        $this->assertCount(1, $this->getJson("/profiles/{$user->name}/notifications")->json());
+        $this->assertCount(1, $this->getJson("/profiles/{$user->username}/notifications")->json());
     }
 
     /** @test */
@@ -62,7 +61,7 @@ class NotificationsTest extends TestCase
 
         $notificationId = $user->unreadNotifications->first()->id;
 
-        $this->delete("/profiles/{$user->name}/notifications/{$notificationId}");
+        $this->delete("/profiles/{$user->username}/notifications/{$notificationId}");
 
         $this->assertCount(0, $user->fresh()->unreadNotifications);
 

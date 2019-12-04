@@ -30,7 +30,7 @@
                         <a class="dropdown-item" href="/threads?popular=1">Popular Threads</a>
                         <a class="dropdown-item" href="/threads?unanswered=1">Unanswered Threads</a>
                         @if (auth()->check())
-                            <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
+                            <a class="dropdown-item" href="/threads?by={{ auth()->user()->username }}">My Threads</a>
                         @endif
                     </div>
                 </li>
@@ -70,7 +70,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/profiles/{{ auth()->user()->name }}">
+                            <a class="dropdown-item" href="/profiles/{{ auth()->user()->username }}">
                                 Profile
                             </a>
 

@@ -27,11 +27,12 @@ class RegistrationTest extends TestCase
         Mail::fake();
         $this->post('/register', [
            'name' => 'Mohammed',
+           'username' => 'mohammed',
            'email' => 'mohammed@example.com',
            'password' => 'password',
            'password_confirmation' => 'password',
         ]);
-        $user = User::whereName('Mohammed')->first();
+        $user = User::whereUsername('mohammed')->first();
         $this->assertFalse($user->confirmed);
         $this->assertNotNull($user->confirmation_token);
 
