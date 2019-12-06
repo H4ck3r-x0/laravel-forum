@@ -1,5 +1,6 @@
 <div class="w-1/4 mr-10 h-12">
-    <button type="submit" class=" w-full uppercase font-medium shadow focus:outline-none hover:bg-lightBlue bg-secondary text-white p-2 pr-4 pl-4 rounded-lg tracking-wider">start a new discussion</button>
+    <button type="submit" @click="$modal.show('create')" class=" w-full uppercase font-medium shadow focus:outline-none hover:bg-lightBlue bg-secondary text-white p-2 pr-4 pl-4 rounded-lg tracking-wider">start a new discussion</button>
+    <modal name="create"></modal>
     <div class="flex-1">
         <h3 class="font-sans font-bold text-xl ml-1 text-gray-700 tracking-wide mt-4 mb-1">Browse</h3>
         <ul class="border-b">

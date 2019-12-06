@@ -6,9 +6,12 @@
 
 require('./bootstrap');
 import InstantSearch from 'vue-instantsearch';
+import VModal from 'vue-js-modal'
 
 window.Vue = require('vue');
 Vue.use(InstantSearch);
+Vue.use(VModal);
+
 
 let authorizations = require('./authorizations');
 
