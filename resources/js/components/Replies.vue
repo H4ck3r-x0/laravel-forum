@@ -23,7 +23,7 @@
 
         components: { Reply, NewReply },
 
-        mixins: [collections],
+        mixins: [ collections ],
 
         data() {
             return {

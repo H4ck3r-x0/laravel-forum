@@ -2,10 +2,12 @@
     import Replies from "../components/Replies";
     import SubscribeButton from "../components/SubscribeButton";
     import Trix from "../components/Trix";
+    import VueTrix from "vue-trix";
+
     export default {
         props: ['thread'],
 
-        components: { Replies, SubscribeButton, Trix },
+        components: { Replies, SubscribeButton, Trix, VueTrix },
 
         data() {
             return {

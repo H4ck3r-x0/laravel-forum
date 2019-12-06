@@ -1,24 +1,30 @@
 <template>
     <button :class="clasess" @click="subscribe">
-        Subscribe
+        <i class="fas fa-bell"></i>
     </button>
 </template>
 
 <script>
     export default {
         props: ['active'],
-
+        data() {
+          return {
+              status: this.active
+          }
+        },
         computed: {
           clasess() {
-              return ['btn btn-sm mb-1', this.active ? 'btn-primary' : 'btn-secondary'];
+              return ['text-gray-600 focus:outline-none', this.status ? 'text-redFire' : 'text-gray-600'];
           }
         },
 
         methods: {
             subscribe() {
-                axios[this.active ? 'delete' : 'post'](location.pathname + '/subscriptions');
+                axios[this.status ? 'delete' : 'post'](location.pathname + '/subscriptions');
 
-                this.active = ! this.active;
+                this.status = ! this.status;
+                let state = this.status ?  'subscribed' : 'Unsbscibed';
+                flash('You have ' + state + ' from this thread.');
             }
         }
     }

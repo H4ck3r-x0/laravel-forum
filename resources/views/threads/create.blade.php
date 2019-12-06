@@ -44,7 +44,7 @@
 
                             <div class="form-group">
                                 <label for="body">Thread Body</label>
-                                <trix-vue name="body" placeholder="Enter Your content here ..."></trix-vue>
+                                <vue-trix  placeholder="Enter Your content here ..."></vue-trix>
                                 @error('body')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

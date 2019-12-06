@@ -26,18 +26,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <style>
-        body { padding-bottom: 100px; }
-        .level { display: flex; align-items: center;}
-        [v-cloak] { display: none; }
-    </style>
     @yield('head')
 </head>
 <body>
 <div id="app">
     @include('layouts.navbar')
 
-    <main class="py-4">
+    <main class="container mx-auto font-sans">
         @yield('content')
 
         <flash message="{{ session('flash') }}"></flash>

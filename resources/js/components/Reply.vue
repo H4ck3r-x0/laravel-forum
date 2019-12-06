@@ -1,64 +1,38 @@
 <template>
-    <div :id="'reply-' + this.id " class="card mt-4 mb-4 shadow-sm bg-white rounded">
-        <div class="card-header" :class="isBest ? 'bg-info' : 'bg-white'">
-            <div class="level">
-                <h6 class="flex-fill">
-                    <img
-                        class="mr-1 rounded-circle"
-                        width="32"
-                        height="32"
-                        :src="reply.owner.avatar_path"
-                        :alt="reply.owner.name">
-                    <a :href="'/profiles/' + reply.owner.name" v-text="reply.owner.name"></a>
-                    <span class="text-muted" v-text="ago"></span>
-                </h6>
-
+    <div :id="'reply-' + this.id " class="mt-6 hover:bg-gray-100 px-4 py-4 rounded">
+        <div class="flex">
+            <img
+                class="w-12 h-12 mr-2 rounded-full"
+                :src="reply.owner.avatar_path"
+                :alt="reply.owner.name">
+            <div class="flex flex-col">
+                <a
+                    class="text-gray-800 font-bold leading-relaxed hover:underline"
+                    :href="'/profiles/' + reply.owner.name"
+                    v-text="reply.owner.name">
+                </a>
+                <span class="text-xs text-gray-500" v-text="ago"></span>
+            </div>
+            <div class="flex flex-row ml-5">
+                <div v-if="authorize('owns', reply)">
+                    <button class="text-secondary mr-3 focus:outline-none" @click="editing = true">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button  class="text-redFire focus:outline-none" @click="destroy">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="ml-auto">
                 <div v-if="signdIn">
                     <favorite :reply="reply"></favorite>
                 </div>
-
             </div>
         </div>
-        <div class="card-body">
-            <div v-if="editing">
-                <form @submit="update">
-                    <div class="form-group mb-0">
-                        <VueTrix inputName="body" inputId="body" v-model="body"></VueTrix>
-
-                        <div class="d-flex mt-2">
-                            <button type="submit" class="btn btn-sm btn-primary mr-1">
-                                Update
-                            </button>
-                            <button type="button" class="btn btn-sm btn-link" @click="reset">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div v-else v-html="body"
-                 @dblclick="authorize('owns', reply) ? editing = true : editing = false">
-            </div>
-        </div>
-
-
-        <div class="card-footer d-flex" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
-            <div v-if="authorize('owns', reply)">
-                <button class="btn btn-sm btn-secondary mr-1" @click="editing = true">
-                    Edit
-                </button>
-                <button  class="btn btn-sm btn-danger" @click="destroy">
-                    Delete
-                </button>
-            </div>
-            <button v-show="! isBest"  class="btn btn-sm btn-info" style="margin-left: auto" @click="markBestReply"
-                     v-if="authorize('owns', reply.thread)">
-                Best Reply?
-            </button>
-        </div>
+        <div v-html="body" class="mt-6 font-medium text-gray-800 font-semibold leading-relaxed tracking-wide"></div>
     </div>
-
 </template>
+
 <script>
     import Favorite from "./Favorite";
     import moment from 'moment';
@@ -66,7 +40,7 @@
     export default {
         props: ['reply'],
 
-        components: {Favorite},
+        components: { Favorite },
 
         data() {
             return {

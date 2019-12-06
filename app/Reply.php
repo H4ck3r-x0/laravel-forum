@@ -12,7 +12,7 @@ class Reply extends Model
 
     protected $guarded = [];
 
-    protected $with = ['owner', 'favorites'];
+    protected $with = ['owner', 'favorites', 'thread'];
 
     protected $appends = ['favoritesCount', 'isFavorited', 'isBest'];
 

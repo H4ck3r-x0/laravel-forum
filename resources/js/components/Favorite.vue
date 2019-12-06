@@ -1,7 +1,7 @@
 <template>
-    <button type="submit" :class="classes" @click="toggle">
-        <i class="fas fa-heart"></i>
-        <span v-text="favoritesCount"></span>
+    <button type="submit" class="focus:outline-none" :class="classes" @click="toggle">
+        <i class="fas fa-heart fa-1x"></i>
+        <span v-text="favoritesCount"></span> Likes
     </button>
 </template>
 
@@ -17,9 +17,9 @@
         },
 
         computed: {
-            //btn btn-sm btn-primary
+
             classes() {
-                return ['btn btn-sm', this.isFavorited ? 'btn-primary' : 'btn-default']
+                return ['text-gray-600 ', this.isFavorited ? 'text-redFire' : 'text-gray-600']
             },
 
             endpoint() {

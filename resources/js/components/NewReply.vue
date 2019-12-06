@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-8">
         <div v-if="signdIn">
             <div class="form-group">
                 <VueTrix inputName="body" inputId="editor1" v-model="body" :placeholder="placeholder" ></VueTrix>
@@ -7,14 +7,14 @@
             <button
                 v-if="body !== ''"
                 type="submit"
-                class="btn btn-primary"
+                class="mt-3 font-medium tracking-wide px-4 py-1 bg-secondary hover:bg-lightBlue rounded text-white focus:outline-none"
                 @click="addReply">Send
             </button>
             <button
                 v-else
                 disabled
                 type="submit"
-                class="btn btn-primary"
+                class="mt-3 font-medium disabled tracking-wide px-4 py-1 bg-gray-400 cursor-not-allowed rounded text-white focus:outline-none"
                 @click="addReply">Send
             </button>
         </div>
@@ -27,22 +27,19 @@
 </template>
 
 <script>
-    import Trix from "./Trix";
+    import VueTrix from "vue-trix";
+
     import Tribute from "tributejs";
 
     export default {
         props: ['endpoint'],
-        components: { Trix },
+        components: { VueTrix },
 
         data() {
             return {
                 body: '',
                 placeholder: 'You have something to say?'
             }
-        },
-
-        created() {
-
         },
 
         mounted() {
