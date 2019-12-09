@@ -6,11 +6,9 @@
 
 require('./bootstrap');
 import InstantSearch from 'vue-instantsearch';
-import VModal from 'vue-js-modal'
 
 window.Vue = require('vue');
 Vue.use(InstantSearch);
-Vue.use(VModal);
 
 
 let authorizations = require('./authorizations');
@@ -42,6 +40,7 @@ Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
 Vue.component('search', require('./components/Search.vue').default);
 Vue.component('trix-vue', require('./components/Trix.vue').default);
 Vue.component('account-dropdown', require('./components/AccountDropdown.vue').default);
+Vue.component('register', require('./components/Auth/Register').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

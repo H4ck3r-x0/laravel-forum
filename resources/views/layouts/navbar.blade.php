@@ -18,9 +18,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hidden lg:flex lg:items-center  xl:w-1/4 px-20">
-                        <user-notifications class="mr-3" v-if="this.signdIn"></user-notifications>
-                        <account-dropdown v-if="this.signdIn"></account-dropdown>
+                    @guest
+                    <div class="flex flex-row items-center">
+                        <a href="{{ route('register') }}" class="block antialiased mr-6 font-medium text-red-500 tracking-wide hover:text-red-400">
+                            Become a member
+                        </a>
+                        <a href="#" class="block antialiased font-medium text-gray-700 tracking-wide hover:text-gray-600">
+                            Sign In
+                        </a>
+                    </div>
+                    @endguest
+                    <div class="hidden lg:flex lg:items-center  xl:w-1/4 px-20" v-if="this.signdIn">
+                        <user-notifications class="mr-3" ></user-notifications>
+                        <account-dropdown></account-dropdown>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                               style="display: none;">
                             @csrf
