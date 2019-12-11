@@ -9836,6 +9836,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers_Form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/Form */ "./resources/js/helpers/Form.js");
 //
 //
 //
@@ -9924,31 +9925,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['name', 'username', 'email', 'password', 'password_confirmation'],
   data: function data() {
     return {
-      form: {
-        name: this.name,
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.password_confirmation
-      }
+      showErrors: false,
+      form: new _helpers_Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        name: '',
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      })
     };
   },
   methods: {
     register: function register() {
-      axios.post('/register', {
-        name: this.form.name,
-        email: this.form.email,
-        username: this.form.username,
-        password: this.form.password,
-        password_confirmation: this.form.password_confirmation
-      }).then(function (response) {
-        console.log(response);
+      var _this = this;
+
+      this.form.post('/register').then(function (response) {
+        window.location.href = '/threads';
       })["catch"](function (error) {
-        console.log(error.response);
+        _this.showErrors = true;
       });
     }
   }
@@ -74956,6 +74980,9 @@ var render = function() {
             submit: function($event) {
               $event.preventDefault()
               return _vm.register($event)
+            },
+            keydown: function($event) {
+              return _vm.form.errors.clear($event.target.name)
             }
           }
         },
@@ -74978,7 +75005,11 @@ var render = function() {
                     "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
                   attrs: { for: "grid-full-name" }
                 },
-                [_vm._v("\n                    Full Name\n                ")]
+                [
+                  _vm._v(
+                    "\n                        Full Name\n                    "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("input", {
@@ -74991,11 +75022,15 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                  "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                class: _vm.form.errors.has("name")
+                  ? "border border-red-500"
+                  : "",
                 attrs: {
                   name: "name",
                   id: "grid-full-name",
                   type: "text",
+                  autofocus: "",
                   placeholder: "Jane Doe"
                 },
                 domProps: { value: _vm.form.name },
@@ -75009,9 +75044,14 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("p", { staticClass: "text-red-500 text-xs italic" }, [
-                _vm._v("Please fill out this field.")
-              ])
+              _vm.form.errors.has("name")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-xs italic",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.get("name"))
+                    }
+                  })
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "w-full md:w-1/2 px-3" }, [
@@ -75022,7 +75062,11 @@ var render = function() {
                     "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
                   attrs: { for: "grid-username" }
                 },
-                [_vm._v("\n                    username\n                ")]
+                [
+                  _vm._v(
+                    "\n                        username\n                    "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("input", {
@@ -75035,7 +75079,10 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                  "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                class: _vm.form.errors.has("username")
+                  ? "border border-red-500"
+                  : "",
                 attrs: {
                   name: "username",
                   id: "grid-username",
@@ -75051,7 +75098,16 @@ var render = function() {
                     _vm.$set(_vm.form, "username", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("username")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-xs italic",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.get("username"))
+                    }
+                  })
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -75066,7 +75122,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                     email address\n                 "
+                    "\n                        email address\n                    "
                   )
                 ]
               ),
@@ -75082,6 +75138,9 @@ var render = function() {
                 ],
                 staticClass:
                   "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                class: _vm.form.errors.has("email")
+                  ? "border border-red-500"
+                  : "",
                 attrs: {
                   name: "email",
                   id: "grid-email-address",
@@ -75097,7 +75156,16 @@ var render = function() {
                     _vm.$set(_vm.form, "email", $event.target.value)
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.form.errors.has("email")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-xs italic",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.get("email"))
+                    }
+                  })
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -75110,7 +75178,11 @@ var render = function() {
                     "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
                   attrs: { for: "grid-password" }
                 },
-                [_vm._v("\n                    Password\n                ")]
+                [
+                  _vm._v(
+                    "\n                        Password\n                    "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c("input", {
@@ -75124,6 +75196,9 @@ var render = function() {
                 ],
                 staticClass:
                   "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                class: _vm.form.errors.has("password")
+                  ? "border border-red-500"
+                  : "",
                 attrs: {
                   name: "password",
                   id: "grid-password",
@@ -75141,9 +75216,14 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("p", { staticClass: "text-gray-600 text-xs italic" }, [
-                _vm._v("Make it as long and as crazy as you'd like")
-              ])
+              _vm.form.errors.has("password")
+                ? _c("p", {
+                    staticClass: "text-red-500 text-xs italic",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.get("password"))
+                    }
+                  })
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -75158,7 +75238,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                     Confirm Password\n                 "
+                    "\n                        Confirm Password\n                    "
                   )
                 ]
               ),
@@ -75197,32 +75277,32 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+            _c("div", { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "font-medium tracking-wide px-4 py-1 rounded text-white focus:outline-none",
+                  class: _vm.form.errors.any()
+                    ? "cursor-not-allowed bg-gray-100 text-gray-400"
+                    : "bg-secondary hover:bg-lightBlue",
+                  attrs: { disabled: _vm.form.errors.any(), type: "submit" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Sign Up\n                    "
+                  )
+                ]
+              )
+            ])
+          ])
         ]
       )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-      _c("div", { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "font-medium tracking-wide px-4 py-1 bg-secondary hover:bg-lightBlue rounded text-white focus:outline-none",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("\n                     Sign Up\n                ")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -89820,6 +89900,269 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserNotifications_vue_vue_type_template_id_23249cfc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserNotifications_vue_vue_type_template_id_23249cfc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/helpers/Errors.js":
+/*!****************************************!*\
+  !*** ./resources/js/helpers/Errors.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Errors; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Errors =
+/*#__PURE__*/
+function () {
+  /**
+   * Create a new Errors instance.
+   */
+  function Errors() {
+    _classCallCheck(this, Errors);
+
+    this.errors = {};
+  }
+  /**
+   * Determine if an errors exists for the given field.
+   *
+   * @param {string} field
+   */
+
+
+  _createClass(Errors, [{
+    key: "has",
+    value: function has(field) {
+      return this.errors.hasOwnProperty(field);
+    }
+    /**
+     * Determine if we have any errors.
+     */
+
+  }, {
+    key: "any",
+    value: function any() {
+      return Object.keys(this.errors).length > 0;
+    }
+    /**
+     * Retrieve the error message for a field.
+     *
+     * @param {string} field
+     */
+
+  }, {
+    key: "get",
+    value: function get(field) {
+      if (this.errors[field]) {
+        return this.errors[field][0];
+      }
+    }
+    /**
+     * Record the new errors.
+     *
+     * @param {object} errors
+     */
+
+  }, {
+    key: "record",
+    value: function record(errors) {
+      this.errors = errors;
+    }
+    /**
+     * Clear one or all error fields.
+     *
+     * @param {string|null} field
+     */
+
+  }, {
+    key: "clear",
+    value: function clear(field) {
+      if (field) {
+        delete this.errors[field];
+        return;
+      }
+
+      this.errors = {};
+    }
+  }]);
+
+  return Errors;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/helpers/Form.js":
+/*!**************************************!*\
+  !*** ./resources/js/helpers/Form.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Form; });
+/* harmony import */ var _Errors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Errors */ "./resources/js/helpers/Errors.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Form =
+/*#__PURE__*/
+function () {
+  /**
+   * Create a new Form instance.
+   *
+   * @param {object} data
+   */
+  function Form(data) {
+    _classCallCheck(this, Form);
+
+    this.originalData = data;
+
+    for (var field in data) {
+      this[field] = data[field];
+    }
+
+    this.errors = new _Errors__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  }
+  /**
+   * Fetch all relevant data for the form.
+   */
+
+
+  _createClass(Form, [{
+    key: "data",
+    value: function data() {
+      var data = {};
+
+      for (var property in this.originalData) {
+        data[property] = this[property];
+      }
+
+      return data;
+    }
+    /**
+     * Reset the form fields.
+     */
+
+  }, {
+    key: "reset",
+    value: function reset() {
+      for (var field in this.originalData) {
+        this[field] = '';
+      }
+
+      this.errors.clear();
+    }
+    /**
+     * Send a POST request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "post",
+    value: function post(url) {
+      return this.submit('post', url);
+    }
+    /**
+     * Send a PUT request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "put",
+    value: function put(url) {
+      return this.submit('put', url);
+    }
+    /**
+     * Send a PATCH request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "patch",
+    value: function patch(url) {
+      return this.submit('patch', url);
+    }
+    /**
+     * Send a DELETE request to the given URL.
+     * .
+     * @param {string} url
+     */
+
+  }, {
+    key: "delete",
+    value: function _delete(url) {
+      return this.submit('delete', url);
+    }
+    /**
+     * Submit the form.
+     *
+     * @param {string} requestType
+     * @param {string} url
+     */
+
+  }, {
+    key: "submit",
+    value: function submit(requestType, url) {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        axios[requestType](url, _this.data()).then(function (response) {
+          _this.onSuccess(response.data);
+
+          resolve(response.data);
+        })["catch"](function (error) {
+          _this.onFail(error.response.data.errors);
+
+          reject(error);
+        });
+      });
+    }
+    /**
+     * Handle a successful form submission.
+     *
+     * @param {object} data
+     */
+
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(data) {
+      this.reset();
+    }
+    /**
+     * Handle a failed form submission.
+     *
+     * @param {object} errors
+     */
+
+  }, {
+    key: "onFail",
+    value: function onFail(errors) {
+      this.errors.record(errors);
+    }
+  }]);
+
+  return Form;
+}();
 
 
 

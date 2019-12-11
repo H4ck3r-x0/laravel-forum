@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -39,7 +41,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-    }
+    }  
 
     /**
      * Get a validator for an incoming registration request.
@@ -72,5 +74,23 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'confirmation_token' => Str::limit(md5($data['email']) . Str::random(30), 30),
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        if ($request->wantsJson()) {
+            $validator = $this->validator($request->all());
+            if($validator->fails()) {
+                return response()->json(['errors' => $validator->getMessageBag()->toArray()], 422);
+            }
+        }
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 }
