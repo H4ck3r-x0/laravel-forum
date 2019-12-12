@@ -1,7 +1,7 @@
 <template>
     <div class="font-sans h-screen">
         <div class="container mx-auto flex justify-center">
-            <form class="w-full max-w-lg bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            <form class="w-full max-w-xl bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
                   @submit.prevent="register"
                   @keydown="form.errors.clear($event.target.name)">
                 <h1 class="text-3xl text-gray-700 font-medium py-5 tracking-wider">Become a Member</h1>
@@ -96,17 +96,20 @@
                             placeholder="******************">
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="flex flex-wrap -mx-3 items-center">
                     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <button
                             :disabled="form.errors.any()"
                             type="submit"
-                            :class="form.errors.any() ? 'cursor-not-allowed bg-gray-100 text-gray-400' : 'bg-secondary hover:bg-lightBlue'"
-                            class="font-medium tracking-wide px-4 py-1 rounded text-white focus:outline-none"
+                            :class="form.errors.any() ? 'cursor-not-allowed bg-gray-100 text-gray-400' : 'bg-blue-500 hover:bg-lightBlue'"
+                            class="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             >
                             Sign Up
                         </button>
                     </div>
+                    <a href="/login" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                    Already Have an account?
+                </a>
                 </div>
             </form>
         </div>

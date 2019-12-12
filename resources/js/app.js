@@ -40,7 +40,8 @@ Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
 Vue.component('search', require('./components/Search.vue').default);
 Vue.component('trix-vue', require('./components/Trix.vue').default);
 Vue.component('account-dropdown', require('./components/AccountDropdown.vue').default);
-Vue.component('register', require('./components/Auth/Register').default);
+Vue.component('register', require('./components/Auth/Register.vue').default);
+Vue.component('login', require('./components/Auth/Login.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
