@@ -68,8 +68,9 @@
             </span>
             </div>
             <div class="flex flex-row">
-                <div class="ml-3" v-if="authorize('owns', thread)">
+                <div class="ml-3">
                     <button
+                        v-if="authorize('owns', thread)"
                         type="button"
                         class="font-medium tracking-wide text-secondary mr-2 rounded text-white focus:outline-none"
                         @click="editing = true">

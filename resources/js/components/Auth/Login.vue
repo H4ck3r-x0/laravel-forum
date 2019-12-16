@@ -9,6 +9,9 @@
 		  @keydown="form.errors.clear($event.target.name)"
 		  >
 		  	<h1 class="text-3xl text-gray-700 font-medium py-5 tracking-wider">Sign In</h1>
+		  	<div class="text-red-500 text-xl mb-3">
+		  		<p v-text="error"></p>
+		  	</div>
 		    <div class="mb-4">
 		      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
 		        E-Mail Address
@@ -45,7 +48,7 @@
 		    </div>
 		    <div class="md:flex md:items-center mb-6">
 			    <label class="md:w-2/3 block text-gray-500 font-bold">
-			      <input class="mr-2 leading-tight" name="remember" type="checkbox">
+			      <input class="mr-2 leading-tight" v-model="form.remember" name="remember" type="checkbox">
 			      <span class="text-sm">
 			        Remember Me
 			      </span>
@@ -53,10 +56,8 @@
 	  		</div>
 		    <div class="flex items-center justify-between">
 		      <button 
-		      :disabled="form.errors.any()"
-		      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-		      :class="form.errors.any() ? 'cursor-not-allowed bg-gray-100 text-gray-400' : 'bg-blue-500 hover:bg-lightBlue'"
-		      type="submit"
+			      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none" 
+			      type="submit"
 		      >
 		        Sign In
 		      </button>
@@ -74,10 +75,11 @@
     export default {
     	data() {
     		return {
-                showErrors: false,
+    			error: '',
                 form: new Form({
                     email: '',
                     password: '',
+                    remember: false
                 }),
     		}
     	},
@@ -86,14 +88,21 @@
             login() {
                 this.form.post('/login')
                 .then(response => {
-                	console.log('loggedin!')
-                    // window.location.href = '/threads';
+                    window.location.href = '/threads';
                 })
                 .catch(error => {
-                	console.log(error.response);
-                    this.showErrors = true;
+                	 this.handleLoginErrors(error);
                 })
             },
+
+            handleLoginErrors(error)
+            {
+	        	 if (error.response.status == 406) 
+	        	 {
+	        	 	 this.error = error.response.data.errors;
+	        	 	 this.form.password = '';
+	        	 }
+            }
     	}
 
     }

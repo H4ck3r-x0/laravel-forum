@@ -9907,14 +9907,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      showErrors: false,
+      error: '',
       form: new _helpers_Form__WEBPACK_IMPORTED_MODULE_0__["default"]({
         email: '',
-        password: ''
+        password: '',
+        remember: false
       })
     };
   },
@@ -9923,11 +9925,16 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.form.post('/login').then(function (response) {
-        console.log('loggedin!'); // window.location.href = '/threads';
+        window.location.href = '/threads';
       })["catch"](function (error) {
-        console.log(error.response);
-        _this.showErrors = true;
+        _this.handleLoginErrors(error);
       });
+    },
+    handleLoginErrors: function handleLoginErrors(error) {
+      if (error.response.status == 406) {
+        this.error = error.response.data.errors;
+        this.form.password = '';
+      }
     }
   }
 });
@@ -75107,6 +75114,10 @@ var render = function() {
             [_vm._v("Sign In")]
           ),
           _vm._v(" "),
+          _c("div", { staticClass: "text-red-500 text-xl mb-3" }, [
+            _c("p", { domProps: { textContent: _vm._s(_vm.error) } })
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "mb-4" }, [
             _c(
               "label",
@@ -75212,32 +75223,61 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex items-center justify-between" }, [
+          _c("div", { staticClass: "md:flex md:items-center mb-6" }, [
             _c(
-              "button",
-              {
-                staticClass:
-                  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline",
-                class: _vm.form.errors.any()
-                  ? "cursor-not-allowed bg-gray-100 text-gray-400"
-                  : "bg-blue-500 hover:bg-lightBlue",
-                attrs: { disabled: _vm.form.errors.any(), type: "submit" }
-              },
-              [_vm._v("\n\t\t        Sign In\n\t\t      ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass:
-                  "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800",
-                attrs: { href: "/password/reset" }
-              },
-              [_vm._v("\n\t\t        Forgot Your Password?\n\t\t      ")]
+              "label",
+              { staticClass: "md:w-2/3 block text-gray-500 font-bold" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.remember,
+                      expression: "form.remember"
+                    }
+                  ],
+                  staticClass: "mr-2 leading-tight",
+                  attrs: { name: "remember", type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.form.remember)
+                      ? _vm._i(_vm.form.remember, null) > -1
+                      : _vm.form.remember
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.form.remember,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.form, "remember", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form,
+                              "remember",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.form, "remember", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-sm" }, [
+                  _vm._v("\n\t\t\t        Remember Me\n\t\t\t      ")
+                ])
+              ]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
         ]
       )
     ])
@@ -75248,17 +75288,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "md:flex md:items-center mb-6" }, [
-      _c("label", { staticClass: "md:w-2/3 block text-gray-500 font-bold" }, [
-        _c("input", {
-          staticClass: "mr-2 leading-tight",
-          attrs: { name: "remember", type: "checkbox" }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-sm" }, [
-          _vm._v("\n\t\t\t        Remember Me\n\t\t\t      ")
-        ])
-      ])
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("\n\t\t        Sign In\n\t\t      ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass:
+            "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800",
+          attrs: { href: "/password/reset" }
+        },
+        [_vm._v("\n\t\t        Forgot Your Password?\n\t\t      ")]
+      )
     ])
   }
 ]

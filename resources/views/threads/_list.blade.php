@@ -2,7 +2,7 @@
     <div class="relative border p-6 mb-8 rounded-lg hover:bg-gray-100 shadow-md">
         <div
             class="flex absolute right-5 -top-3 w-32 bg-white border py-1 px-1 justify-center pr-1 rounded-lg hover:bg-gray-100">
-            <a href="#" class="block hover:underline">
+            <a href="/threads/{{ $thread->channel->slug }}" class="block hover:underline">
                 <i class="fas fa-tags text-secondary mr-1"></i> {{ $thread->channel->name }}
             </a>
         </div>
