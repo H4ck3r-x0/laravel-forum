@@ -5,13 +5,14 @@
 </template>
 
 <script>
+    import Noty from 'noty';
     export default {
         props: ['message'],
 
         data() {
             return {
                 body: this.message,
-                level: 'success',
+                level: 'alert',
                 show: false
             }
         },
@@ -31,26 +32,17 @@
             flash(data) {
                 if (data) {
                     this.body = data.message;
-                    this.level = data.level;
+                    new Noty({
+                        type: this.level,
+                        theme: 'mint',
+                        progressBar: true,
+                        text: this.body,
+                        layout: 'topRight',
+                        timeout: 5000,
+                    }).show();  
                 }
-                this.show = true;
 
-                this.hide();
-            },
-
-            hide() {
-                setTimeout(() => {
-                    this.show = false;
-                }, 5000);
-            }
+            }        
         }
     }
 </script>
-
-<style>
-    .alert-flash {
-        position: fixed;
-        right: 25px;
-        top: 10%;
-    }
-</style>

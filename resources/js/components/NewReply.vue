@@ -20,7 +20,7 @@
         </div>
 
     <p class="text-center text-muted" v-else>
-        Please <a href="/login">sign in</a> to participate in the forum.
+        Please <a class="text-secondary" href="/login">Login</a> to participate in the forum.
     </p>
 
     </div>

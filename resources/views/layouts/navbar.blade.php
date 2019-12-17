@@ -4,7 +4,7 @@
             <div class="flex items-center -mx-6">
                 <div class="lg:w-1/4 xl:w-1/7 pl-6 pr-6 lg:pr-8">
                     <div class="flex items-center">
-                        <a class="antialiased block ml-6 lg:mr-4 text-2xl text-secondary font-semibold font-sans tracking-wide" href="{{ url('/') }}">
+                        <a class="antialiased block ml-6 lg:mr-4 text-2xl text-secondary font-semibold font-sans tracking-wide" href="{{ url('/threads') }}">
                             <i class="fab fa-laravel fa-lg text-redFire"></i> {{ config('app.name', 'Laravel') }}
                         </a>
                     </div>
@@ -23,7 +23,7 @@
                         <a href="{{ route('register') }}" class="block antialiased mr-6 font-medium text-red-500 tracking-wide hover:text-red-400">
                             Become a member
                         </a>
-                        <a href="#" class="block antialiased font-medium text-gray-700 tracking-wide hover:text-gray-600">
+                        <a href="{{ route('login') }}" class="block antialiased font-medium text-gray-700 tracking-wide hover:text-gray-600">
                             Sign In
                         </a>
                     </div>
