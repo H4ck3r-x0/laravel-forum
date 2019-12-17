@@ -10,6 +10,7 @@
  * @import "tailwindcss/base";
  */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import '/css/vendor/nprogress.css';
 
 @tailwind base;
 
@@ -17,6 +18,10 @@ pre {
     @apply bg-gray-700 text-white p-4 rounded;
 }
 [v-cloak] { display: none; }
+
+.reply_body > a {
+	@apply text-secondary;
+}
 
 /**
  * This injects any component classes registered by plugins.

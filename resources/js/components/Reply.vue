@@ -29,7 +29,10 @@
                 </div>
             </div>
         </div>
-        <div v-html="body" class="mt-6 font-medium text-gray-800 font-semibold leading-relaxed tracking-wide"></div>
+        <div
+        v-html="body" 
+        class="reply_body mt-6 font-medium text-gray-800 font-semibold leading-relaxed tracking-wide">
+        </div>
     </div>
 </template>
 

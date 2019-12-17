@@ -1,5 +1,5 @@
 window._ = require('lodash');
-
+import NProgress from "nprogress";
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -22,6 +22,30 @@ window._ = require('lodash');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+axios.interceptors.request.use(function (config) {
+    NProgress.start();
+    
+    return config;
+}, function (error) {
+    NProgress.done();
+    NProgress.remove();
+
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(function (response) {
+        NProgress.done();
+        NProgress.remove();
+        
+    return response;
+  }, function (error) {
+        NProgress.done();
+        NProgress.remove();
+
+    return Promise.reject(error);
+  });
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
