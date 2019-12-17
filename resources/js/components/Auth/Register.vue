@@ -117,11 +117,34 @@
 </template>
 <script>
     import Form from "../../helpers/Form";
+    import NProgress from "nprogress";
+
+    axios.interceptors.request.use(function (config) {
+        NProgress.start();
+        
+        return config;
+    }, function (error) {
+        NProgress.done();
+        NProgress.remove();
+
+        return Promise.reject(error);
+    });
+
+    axios.interceptors.response.use(function (response) {
+            NProgress.done();
+            NProgress.remove();
+            
+        return response;
+      }, function (error) {
+            NProgress.done();
+            NProgress.remove();
+
+        return Promise.reject(error);
+      });
 
     export default {
         data() {
             return {
-                showErrors: false,
                 form: new Form({
                     name: '',
                     username: '',
@@ -139,9 +162,12 @@
                     window.location.href = '/threads';
                 })
                 .catch(error => {
-                    this.showErrors = true;
                 })
             },
         }
     }
 </script>
+
+<style>
+  @import '/css/vendor/nprogress.css';
+</style>
