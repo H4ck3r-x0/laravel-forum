@@ -25,6 +25,22 @@ pre {
 	@apply text-secondary;
 }
 
+.tribute-container {
+	@apply bg-white p-2;
+}
+
+.tribute-container > ul {
+	@apply mx-2;
+}
+
+.tribute-container > ul > li {
+	@apply p-2 ;
+}
+
+.tribute-container > ul > li:hover {
+	@apply bg-blue-400 text-white rounded-lg cursor-pointer;
+}
+
 /**
  * This injects any component classes registered by plugins.
  *
