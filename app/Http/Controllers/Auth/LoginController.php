@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if ($request->wantsJson()) 
-        {      
+        {    
             $validator = $this->validateLogin($request->all());
             if($validator->fails()) {
                 return response()->json(['errors' => $validator->getMessageBag()->toArray()], 422);

@@ -34,11 +34,11 @@ pre {
 }
 
 .tribute-container > ul > li {
-	@apply p-2 ;
+	@apply p-2;
 }
 
 .tribute-container > ul > li:hover {
-	@apply bg-blue-400 text-white rounded-lg cursor-pointer;
+	@apply bg-secondary text-white rounded-lg cursor-pointer;
 }
 
 /**

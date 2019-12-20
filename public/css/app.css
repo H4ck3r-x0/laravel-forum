@@ -6800,6 +6800,27 @@ pre {
   color: #10a5eb;
 }
 
+.tribute-container {
+  background-color: #fff;
+  padding: 0.5rem;
+}
+
+.tribute-container > ul {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.tribute-container > ul > li {
+  padding: 0.5rem;
+}
+
+.tribute-container > ul > li:hover {
+  background-color: #10a5eb;
+  color: #fff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 /**
  * This injects any component classes registered by plugins.
  *
