@@ -6802,7 +6802,7 @@ pre {
 
 .tribute-container {
   background-color: #fff;
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 .tribute-container > ul {
@@ -6811,13 +6811,16 @@ pre {
 }
 
 .tribute-container > ul > li {
-  padding: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .tribute-container > ul > li:hover {
   background-color: #10a5eb;
   color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 0.125rem;
   cursor: pointer;
 }
 

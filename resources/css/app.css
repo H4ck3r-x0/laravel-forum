@@ -26,7 +26,7 @@ pre {
 }
 
 .tribute-container {
-	@apply bg-white p-2;
+	@apply bg-white p-1;
 }
 
 .tribute-container > ul {
@@ -34,11 +34,11 @@ pre {
 }
 
 .tribute-container > ul > li {
-	@apply p-2;
+	@apply py-1 px-2;
 }
 
 .tribute-container > ul > li:hover {
-	@apply bg-secondary text-white rounded-lg cursor-pointer;
+	@apply bg-secondary text-white rounded-sm cursor-pointer;
 }
 
 /**
