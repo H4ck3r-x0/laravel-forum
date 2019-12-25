@@ -33,7 +33,7 @@
                 </a>
                 <div class="mt-3 w-1/7">
                     <p class="text-gray-700 text-base leading-relaxed">
-                        {!! $thread->body !!}
+                        {!! Str::limit($thread->body, 50) !!}
                     </p>
                 </div>
                 <div class="flex  mt-3 mb-0">
