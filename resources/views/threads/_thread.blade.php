@@ -53,7 +53,28 @@
 {{--         Show Thread   --}}
 <div class="w-full h-12" v-else>
     <div class="hover:bg-gray-100 px-4 py-2 rounded">
-        <h1 v-text="title" class="antialiased text-2xl font-bold text-gray-800 leading-relaxed"></h1>
+        <div class="flex flex-row justify-between">
+            <h1 v-text="title" class="antialiased text-2xl font-bold text-gray-800 leading-relaxed"></h1>
+                <div class="flex  mt-3 mb-0">
+                    <p class="text-gray-500 mr-3">
+                        <i class="far fa-eye"></i>
+                        <span>
+                            {{ $thread->visits()->count() }}
+                        </span>
+                    </p>
+                    <p class="text-gray-500">
+                        <i class="far fa-comment"></i>
+                        <span>
+                            {{ $thread->replies_count }}
+                        </span>
+                    </p>
+                    <p class="block ml-3 border px-2 text-gray-500 rounded hover:bg-white hover:text-black">
+                        <a href="/threads/{{ $thread->channel->slug }}">
+                            {{ $thread->channel->name }}
+                        </a>
+                    </p>
+                </div>
+        </div>
         <div class="flex mt-4">
             <img
                 class="w-12 h-12 mr-2 rounded-full"
