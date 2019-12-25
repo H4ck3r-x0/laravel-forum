@@ -40,15 +40,26 @@
                     <p class="text-gray-500 mr-3">
                         <i class="far fa-eye"></i>
                         <span>
-                    {{ $thread->visits()->count() }}
-                </span>
+                            {{ $thread->visits()->count() }}
+                        </span>
                     </p>
                     <p class="text-gray-500">
                         <i class="far fa-comment"></i>
                         <span>
-                    {{ $thread->replies_count }}
-                </span>
+                            {{ $thread->replies_count }}
+                        </span>
                     </p>
+
+                    @if($thread->lastReply)
+                    <p class="text-gray-500 ml-3">
+                        <a href="{{ route("profile", $thread->lastReply->owner) }}" class="font-bold text-sm text-secondary">
+                            {{ $thread->lastReply->owner->name }}
+                        </a>
+                         <span> replied</span>
+                         <span class="text-gray-600">{{ $thread->lastReply->created_at->diffForHumans() }}</span>
+                    </p>
+                    @endif
+
                 </div>
             </div>
         </div>
