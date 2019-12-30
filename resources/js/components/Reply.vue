@@ -2,6 +2,7 @@
     <div :id="'reply-' + this.id " class="mt-6 hover:bg-gray-100 px-4 py-4 rounded">
         <div class="flex">
             <img
+                :class="isBest ? '' : 'border-2 border-green-400 border-solid'"
                 class="w-12 h-12 mr-2 rounded-full"
                 :src="reply.owner.avatar_path"
                 :alt="reply.owner.name">
@@ -24,8 +25,18 @@
                 </div>
             </div>
             <div class="ml-auto">
-                <div v-if="signdIn">
-                    <favorite :reply="reply"></favorite>
+                <div class="flex flex-row items-center">
+                       <button 
+                        v-show="! isBest"  
+                        class="btn btn-sm btn-info mr-3 bg-bestReply text-bestReplyDark py-1 px-3 rounded-full font-semibold focus:outline-none" 
+                        style="margin-left: auto" 
+                        @click="markBestReply"
+                        v-if="authorize('owns', reply.thread)">
+                        Best answer
+                    </button>
+                    <div v-if="signdIn">
+                        <favorite :reply="reply"></favorite>
+                    </div>                    
                 </div>
             </div>
         </div>

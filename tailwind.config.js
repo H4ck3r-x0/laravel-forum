@@ -12,6 +12,8 @@ module.exports = {
             unanswerdGrayLight: '#b4ccd4',
             tagsGray: '#97a1af',
             editBtn: '#e7fbe8',
+            bestReply: '#e7fbe8',
+            bestReplyDark: '#61be69',
         },
     },
       inset: {

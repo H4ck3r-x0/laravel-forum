@@ -10598,6 +10598,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79671,6 +79682,7 @@ var render = function() {
       _c("div", { staticClass: "flex" }, [
         _c("img", {
           staticClass: "w-12 h-12 mr-2 rounded-full",
+          class: _vm.isBest ? "" : "border-2 border-green-400 border-solid",
           attrs: { src: _vm.reply.owner.avatar_path, alt: _vm.reply.owner.name }
         }),
         _vm._v(" "),
@@ -79717,9 +79729,36 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "ml-auto" }, [
-          _vm.signdIn
-            ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
-            : _vm._e()
+          _c("div", { staticClass: "flex flex-row items-center" }, [
+            _vm.authorize("owns", _vm.reply.thread)
+              ? _c(
+                  "button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.isBest,
+                        expression: "! isBest"
+                      }
+                    ],
+                    staticClass:
+                      "btn btn-sm btn-info mr-3 bg-bestReply text-bestReplyDark py-1 px-3 rounded-full font-semibold focus:outline-none",
+                    staticStyle: { "margin-left": "auto" },
+                    on: { click: _vm.markBestReply }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Best answer\n                "
+                    )
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.signdIn
+              ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
+              : _vm._e()
+          ])
         ])
       ]),
       _vm._v(" "),
