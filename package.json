@@ -32,6 +32,7 @@
         "tributejs": "^4.1.1",
         "vue-instantsearch": "^2.6.0",
         "vue-runtime-helpers": "^1.1.2",
-        "vue-trix": "github:hanhdt/vue-trix"
+        "vue-trix": "github:hanhdt/vue-trix",
+        "vue-typer": "^1.2.0"
     }
 }
