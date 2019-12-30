@@ -27,11 +27,6 @@
                     <i class="fab fa-replyd fa-lg mr-2"></i>  Unanswered Dissections
                 </a>
             </li>
-            <li class="mb-2 hover:bg-gray-100 py-3 px-3 rounded-lg">
-                <a href="#" class="block text-sm font-bold text-gray-800 hover:text-gray-500 hover:bg-gray-100 tracking-wider ">
-                    <i class="far fa-star fa-lg mr-2"></i>  Subscribing
-                </a>
-            </li>
         </ul>
         <h3 class="font-sans font-bold text-xl ml-1 text-gray-700 tracking-wide mt-4 mb-1">Channels</h3>
         <ul class="mt-4">

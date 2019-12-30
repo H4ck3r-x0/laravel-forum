@@ -27,7 +27,7 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
-        //return $threads;
+
         if (request()->wantsJson()) {
             return $threads;
         }
@@ -57,7 +57,6 @@ class ThreadsController extends Controller
      */
     public function store(Request $request, Thread $thread)
     {
-//        dd($request->all());
         $request->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
