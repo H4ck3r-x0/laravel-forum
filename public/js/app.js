@@ -10107,6 +10107,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ImageUpload_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload.vue */ "./resources/js/components/ImageUpload.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -10126,6 +10128,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
@@ -10144,6 +10149,9 @@ __webpack_require__.r(__webpack_exports__);
       return this.authorize(function (user) {
         return user.id === _this.user.id;
       });
+    },
+    ago: function ago() {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.user.created_at).fromNow();
     }
   },
   methods: {
@@ -10280,6 +10288,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -79282,36 +79300,39 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "level" }, [
-      _c("h2", { staticClass: "flex-fill" }, [
+    _c("div", { staticClass: "flex mb-5" }, [
+      _c("div", { staticClass: "flex items-center" }, [
         _c("img", {
-          staticClass: "mr-1 rounded-circle",
-          attrs: {
-            width: "100",
-            height: "100",
-            src: _vm.avatar,
-            alt: _vm.user.name
-          }
+          staticClass: "rounded-full w-32 h-32",
+          attrs: { src: _vm.avatar, alt: _vm.user.name }
         }),
         _vm._v(" "),
-        _c("span", { domProps: { textContent: _vm._s(_vm.user.name) } })
+        _c("div", { staticClass: "flex flex-col" }, [
+          _c("span", {
+            staticClass: "ml-4 text-2xl font-medium text-gray-800",
+            domProps: { textContent: _vm._s(_vm.user.name) }
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "ml-4 text-xs text-gray-600" }, [
+            _vm._v("Member Since " + _vm._s(_vm.ago))
+          ]),
+          _vm._v(" "),
+          _vm.canUpdate
+            ? _c(
+                "form",
+                { attrs: { method: "POST", enctype: "multipart/form-data" } },
+                [
+                  _c("image-upload", {
+                    attrs: { name: "avatar" },
+                    on: { loaded: _vm.onLoad }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _vm.canUpdate
-      ? _c(
-          "form",
-          { attrs: { method: "POST", enctype: "multipart/form-data" } },
-          [
-            _c("image-upload", {
-              staticClass: "mr-1",
-              attrs: { name: "avatar" },
-              on: { loaded: _vm.onLoad }
-            })
-          ],
-          1
-        )
-      : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = []
@@ -79409,10 +79430,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("input", {
-    attrs: { type: "file", accept: "image/*" },
-    on: { change: _vm.onChange }
-  })
+  return _c("div", { staticClass: "flex w-full ml-4 mt-2 items-center" }, [
+    _c(
+      "label",
+      {
+        staticClass:
+          "w-48 flex flex-col items-center rounded-lg py-1 px-1 tracking-wide uppercase border cursor-pointer hover:text-gray-700"
+      },
+      [
+        _c(
+          "svg",
+          {
+            staticClass: "w-8 h-8",
+            attrs: {
+              fill: "currentColor",
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 20 20"
+            }
+          },
+          [
+            _c("path", {
+              attrs: {
+                d:
+                  "M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "mt-2 text-sm leading-normal" }, [
+          _vm._v("Select an avatar")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "hidden",
+          attrs: { type: "file", accept: "image/*" },
+          on: { change: _vm.onChange }
+        })
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
