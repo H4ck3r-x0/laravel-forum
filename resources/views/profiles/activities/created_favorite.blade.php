@@ -1,11 +1,14 @@
 @component('profiles.activities.activity')
     @slot('heading')
-        <span class="flex-fill">
-            <a href="{{ $activity->subject->favorited->path() }}">
-                {{ $profileUser->name }} liked a reply
+        <span class="text-xl font-normal text-gray-900">
+        <i class="far fa-thumbs-up text-blue-600"></i>
+            Liked a reply from
+            <a href="{{ $activity->subject->favorited->path() }}" class="text-blue-600">
+                 {{ $activity->subject->favorited->owner->name }}
             </a>
-        </span>
-        <span>
+            <span class="text-gray-500 text-sm">
+                {{ $activity->subject->favorited->created_at->diffForHumans() }}
+            </span>
         </span>
     @endslot
 
