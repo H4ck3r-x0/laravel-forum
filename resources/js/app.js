@@ -6,12 +6,9 @@
 
 require('./bootstrap');
 import InstantSearch from 'vue-instantsearch';
-import VueTyperPlugin from 'vue-typer'
 
 window.Vue = require('vue');
 Vue.use(InstantSearch);
-
-Vue.use(VueTyperPlugin)
 
 
 let authorizations = require('./authorizations');

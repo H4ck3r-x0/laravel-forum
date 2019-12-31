@@ -1,3 +1,11 @@
+{{-- Trendig Threads --}}
+@if(count($trending))
+    <div class="flex mb-3">
+        <span class="mr-3 font-semibold">Trending: </span>
+        <trending trending="{{ json_encode($trending) }}"></trending>
+    </div>
+@endif
+{{-- Trending Trheads --}}
 @forelse($threads as $thread)
     <div class="relative border p-6 mb-8 rounded-lg hover:bg-gray-100 shadow-md">
         <div

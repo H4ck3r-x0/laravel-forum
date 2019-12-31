@@ -1,6 +1,6 @@
-<!-- <template>
+<template>
 	<div>
-		<vue-typer :text="trendingThreads" :key=""></vue-typer>	
+		
 	</div>
 </template>
 
@@ -15,4 +15,4 @@
 		}
 
 	}
-</script> -->
+</script>
