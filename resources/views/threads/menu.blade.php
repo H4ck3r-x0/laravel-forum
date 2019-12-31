@@ -28,10 +28,25 @@
                 </a>
             </li>
         </ul>
+
+        @if (count($trending))
+        <h3 class="font-sans font-bold text-xl ml-1 text-gray-700 tracking-wide mt-4 mb-1">Trending Trheads</h3>
+            <ol class="w-full list-decimal list-inside border-b">
+                @foreach($trending as $thread)
+                <a 
+                href="{{ $thread->path }}" 
+                class="block text-sm font-bold text-blue-500 hover:text-blue-700 tracking-wide">
+                    <li class="mb-2 ml-1 py-3 px-3 rounded-lg leading-relaxed">
+                        {{ $thread->title }}
+                    </li>
+                </a>
+                @endforeach
+            </ol>
+        @endif
+
         <h3 class="font-sans font-bold text-xl ml-1 text-gray-700 tracking-wide mt-4 mb-1">Channels</h3>
         <ul class="mt-4">
             @foreach ($channels as $channel)
-{{--                {{dd($channel)}}--}}
                 <li class="mb-1 hover:bg-gray-100 py-3 px-3 rounded-lg">
                     <a class="block text-sm font-bold text-tagsGray hover:text-lightBlue  hover:bg-gray-100 tracking-wider" href="/threads/{{ $channel->slug }}">
                         <i class="fas fa-tags text-gray-400 mr-2"></i> {{ $channel->name }}

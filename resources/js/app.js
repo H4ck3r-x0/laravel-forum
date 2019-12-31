@@ -42,7 +42,6 @@ Vue.component('trix-vue', require('./components/Trix.vue').default);
 Vue.component('account-dropdown', require('./components/AccountDropdown.vue').default);
 Vue.component('register', require('./components/Auth/Register.vue').default);
 Vue.component('login', require('./components/Auth/Login.vue').default);
-Vue.component('trending', require('./components/Trending.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

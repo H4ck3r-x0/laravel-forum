@@ -5,7 +5,6 @@
             @include('threads.menu')
 
             @include('threads._thread')
-
         </div>
     </thread-view>
 @endsection
