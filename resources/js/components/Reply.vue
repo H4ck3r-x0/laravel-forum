@@ -1,15 +1,17 @@
 <template>
-    <div :id="'reply-' + this.id " class="mt-6 hover:bg-gray-100 px-4 py-4 rounded">
+    <div :id="'reply-' + this.id " 
+    :class="isBest ? 'border-2 border-green-400 rounded-lg shadow' : ''"
+    class="mt-6 hover:bg-gray-100 px-4 py-4 rounded">
         <div class="flex">
             <img
-                :class="isBest ? '' : 'border-2 border-green-400 border-solid'"
+                :class="! isBest ? '' : 'border-2 border-green-400 border-solid'"
                 class="w-12 h-12 mr-2 rounded-full"
                 :src="reply.owner.avatar_path"
                 :alt="reply.owner.name">
             <div class="flex flex-col">
                 <a
                     class="text-gray-800 font-bold leading-relaxed hover:underline"
-                    :href="'/profiles/' + reply.owner.name"
+                    :href="'/profiles/' + reply.owner.username"
                     v-text="reply.owner.name">
                 </a>
                 <span class="text-xs text-gray-500" v-text="ago"></span>

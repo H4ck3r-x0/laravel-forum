@@ -2,7 +2,7 @@
     <div class="mt-8">
         <div v-if="signdIn">
             <div class="form-group">
-                <VueTrix inputName="body" inputId="editor1" v-model="body" :placeholder="placeholder" ></VueTrix>
+                <VueTrix inputName="body" inputId="editor1" v-model="body" :placeholder="placeholder"></VueTrix>
             </div>
             <button
                 v-if="body !== ''"

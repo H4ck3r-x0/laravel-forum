@@ -10627,6 +10627,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79733,13 +79735,14 @@ var render = function() {
     "div",
     {
       staticClass: "mt-6 hover:bg-gray-100 px-4 py-4 rounded",
+      class: _vm.isBest ? "border-2 border-green-400 rounded-lg shadow" : "",
       attrs: { id: "reply-" + this.id }
     },
     [
       _c("div", { staticClass: "flex" }, [
         _c("img", {
           staticClass: "w-12 h-12 mr-2 rounded-full",
-          class: _vm.isBest ? "" : "border-2 border-green-400 border-solid",
+          class: !_vm.isBest ? "" : "border-2 border-green-400 border-solid",
           attrs: { src: _vm.reply.owner.avatar_path, alt: _vm.reply.owner.name }
         }),
         _vm._v(" "),
@@ -79747,7 +79750,7 @@ var render = function() {
           _c("a", {
             staticClass:
               "text-gray-800 font-bold leading-relaxed hover:underline",
-            attrs: { href: "/profiles/" + _vm.reply.owner.name },
+            attrs: { href: "/profiles/" + _vm.reply.owner.username },
             domProps: { textContent: _vm._s(_vm.reply.owner.name) }
           }),
           _vm._v(" "),

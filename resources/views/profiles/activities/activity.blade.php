@@ -2,7 +2,7 @@
     <div class="mb-3">
         {{ $heading }}
     </div>
-    <div class="text-gray-800 font-medium leading-relaxed">
+    <div class="activity-body text-gray-800 font-medium leading-relaxed">
        {{ $body }}
     </div>
 </div>

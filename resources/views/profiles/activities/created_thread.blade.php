@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
     @slot('heading')
         <span class="text-xl font-normal text-gray-900">
-        <i class="fas fa-pencil-alt text-blue-600"></i>
+        <i class="fas fa-pencil-alt text-gray-600"></i>
             Published
             <a href="{{ $activity->subject->path() }}" class="text-blue-600">
                 {{ $activity->subject->title }}

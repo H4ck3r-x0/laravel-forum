@@ -42,6 +42,10 @@ pre {
 	@apply bg-secondary text-white rounded-sm cursor-pointer;
 }
 
+.activity-body > a {
+	@apply text-blue-600 font-medium;
+}
+
 /**
  * This injects any component classes registered by plugins.
  *
