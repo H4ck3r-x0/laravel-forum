@@ -7,7 +7,7 @@
                  {{ $activity->subject->favorited->owner->name }}
             </a>
             <span class="text-gray-500 text-sm">
-                {{ $activity->subject->favorited->created_at->diffForHumans() }}
+                {{ $activity->subject->created_at->diffForHumans() }}
             </span>
         </span>
     @endslot
