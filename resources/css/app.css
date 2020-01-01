@@ -17,7 +17,8 @@
 @tailwind base;
 
 pre {
-    @apply bg-gray-700 text-white p-4 rounded;
+    @apply whitespace-pre-wrap overflow-x-auto m-auto
+    bg-gray-700 text-white p-4 rounded;
 }
 [v-cloak] { display: none; }
 

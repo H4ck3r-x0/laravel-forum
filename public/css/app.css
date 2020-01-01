@@ -6787,6 +6787,9 @@ video {
 }
 
 pre {
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin: auto;
   background-color: #4a5568;
   color: #fff;
   padding: 1rem;
