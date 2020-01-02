@@ -13,16 +13,27 @@ class Visits
         $this->thread = $thread;
     }
 
+    public function get()
+    {
+        return Redis::get($this->cacheKey());
+    }  
+
     public function record()
     {
-        Redis::incr($this->cacheKey());
+        if (request()->ip() != Redis::hget("Visits", $this->checkClientIp())) {
+            Redis::incr($this->cacheKey());
+            Redis::hset("Visits", $this->checkClientIp(), request()->ip());
 
-        return $this;
+            return $this;
+        }
+
+        return null;    
     }
 
     public function reset()
     {
         Redis::del($this->cacheKey());
+        Redis::del("Visits");
 
         return $this;
     }
@@ -36,4 +47,11 @@ class Visits
     {
         return "threads.{$this->thread->id}.visits";
     }
+
+
+    protected function checkClientIp()
+    {
+        $client_ip = request()->ip();
+        return "threads.{$this->thread->id}:userIp:{$client_ip}";
+    }    
 }
