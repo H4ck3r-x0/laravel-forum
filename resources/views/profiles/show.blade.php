@@ -3,7 +3,19 @@
 @section('content')
 <div class="">
     <div class="border-b">
-        <avatar-form :user="{{ $profileUser }}"></avatar-form>
+        <div class="flex flex-row justify-between">
+            <avatar-form :user="{{ $profileUser }}"></avatar-form>
+            <div class="flex flex-col">
+                <span class="text-sm font-medium border border-gray-400 rounded py-1 px-2 mb-2">
+                <i class="fas fa-pencil-alt text-gray-600"></i>
+                    Published: {{ $profileUser->threads_count }}
+                </span>
+                <span class="text-sm font-medium border border-gray-400 rounded py-1 px-2">
+                <i class="far fa-comment-dots text-gray-600"></i>
+                    Replied: {{ $profileUser->replies_count }}
+                </span>                
+            </div>
+        </div>
     </div>
     <div class="flex items-center justify-center mt-4">
     	<h1 class="border-b-2 border-blue-600 text-3xl">Activity</h1>

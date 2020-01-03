@@ -40,6 +40,9 @@ class User extends Authenticatable
         'confirmed' => 'boolean',
     ];
 
+
+    protected $withCount = ['threads', 'replies'];
+
     /**
      * Determine if the user is an administrator.
      *
@@ -48,7 +51,7 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return in_array($this->name, ['Mohammed']);
-    }
+    } 
 
     public function getRouteKeyName()
     {
@@ -59,6 +62,12 @@ class User extends Authenticatable
     public function threads()
     {
         return $this->hasMany(Thread::class)->latest();
+    }
+
+
+    public function replies()
+    {
+        return $this->hasManyThrough(Reply::class, Thread::class);
     }
 
     public function lastReply()
